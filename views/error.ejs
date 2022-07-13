@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        
+        <%- include('partials/head') %> 
+
+    </head>
+
+<body>
+<% if (error.status || 404) { %>
+    <%- include('pages/404') %> 
+<% }else if(error.status || 500){ %>
+    <%- include('pages/500') %> 
+<% } %>
+    <%- include('partials/js') %> 
+</body>
+</html>
+
