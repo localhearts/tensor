@@ -2,40 +2,40 @@
 <html lang="en">
 
 <head>
-
+    
     <%- include('../partials/head') %>
-
+    
 </head>
 
 <body data-sidebar="dark">
-
-    <!-- <body data-layout="horizontal" data-topbar="dark"> -->
-
+    
+    
+    <%- include('../partials/modals') %>
     <!-- Begin page -->
     <div id="layout-wrapper">
-
-
+        
+        
         <header id="page-topbar">
             <%- include('../partials/header') %>
         </header>
-
+        
         <!-- ========== Left Sidebar Start ========== -->
         <div class="vertical-menu">
-
+            
             <div data-simplebar class="h-100">
                 <%- include('../partials/sidebar') %>
             </div>
         </div>
         <!-- Left Sidebar End -->
-
+        
         <!-- ============================================================== -->
         <!-- Start right Content here -->
         <!-- ============================================================== -->
         <div class="main-content">
-
+            
             <div class="page-content">
                 <div class="container-fluid">
-
+                    
                     <!-- start page title -->
                     <div class="row">
                         <div class="col-12">
@@ -43,69 +43,66 @@
                                 <h4 class="mb-sm-0 font-size-18">
                                     <%- menu %>
                                 </h4>
-
+                                
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
                                         <li class="breadcrumb-item"><a href="javascript: void(0);">
-                                                <%- menu %>
-                                            </a></li>
+                                            <%- menu %>
+                                        </a></li>
                                         <li class="breadcrumb-item active">
                                             <%- submenu %>
                                         </li>
                                     </ol>
                                 </div>
-
+                                
                             </div>
                         </div>
                     </div>
                     <!-- end page title -->
-
                     <div class="row">
                     </div>
                     <div class="row">
-
+                        
                         <div class="col-xl-8">
                             <div class="row">
                                 <div class="col-lg-4">
                                     <div class="card mini-stats-wid">
                                         <div class="card-body">
-
+                                            
                                             <div class="d-flex flex-wrap">
                                                 <div class="me-3">
                                                     <p class="text-muted mb-2">Total Data</p>
-                                                    <h5 class="mb-0">120</h5>
+                                                    <h5 class="mb-0"><div class="count-total">0</div></h5>
                                                 </div>
-
+                                                
                                                 <div class="avatar-sm ms-auto">
-                                                    <div
-                                                        class="avatar-title bg-light rounded-circle text-primary font-size-20">
+                                                    <div class="avatar-title bg-light rounded-circle text-primary font-size-20">
                                                         <i class="bx bxs-book-bookmark"></i>
                                                     </div>
                                                 </div>
                                             </div>
-
+                                            
                                         </div>
                                     </div>
                                 </div>
-
+                                
                                 <div class="col-lg-4">
                                     <div class="card blog-stats-wid">
                                         <div class="card-body">
-
+                                            
                                             <div class="d-flex flex-wrap">
                                                 <div class="me-3">
                                                     <p class="text-muted mb-2">Medium Risk</p>
-                                                    <h5 class="mb-0">86</h5>
+                                                    <h5 class="mb-0"><div class="count-medium">0</div></h5>
                                                 </div>
-
+                                                
                                                 <div class="avatar-sm ms-auto">
-                                                    <div
-                                                        class="avatar-title bg-light rounded-circle text-primary font-size-20">
+                                                    <div class="avatar-title bg-light rounded-circle text-primary font-size-20">
                                                         <i class="bx bxs-note"></i>
                                                     </div>
                                                 </div>
                                             </div>
-
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -115,12 +112,11 @@
                                             <div class="d-flex flex-wrap">
                                                 <div class="me-3">
                                                     <p class="text-muted mb-2">Elevated Risk</p>
-                                                    <h5 class="mb-0">4,235</h5>
+                                                    <h5 class="mb-0"><div class="count-elevated">0</div></h5>
                                                 </div>
-
+                                                
                                                 <div class="avatar-sm ms-auto">
-                                                    <div
-                                                        class="avatar-title bg-light rounded-circle text-primary font-size-20">
+                                                    <div class="avatar-title bg-light rounded-circle text-primary font-size-20">
                                                         <i class="bx bxs-message-square-dots"></i>
                                                     </div>
                                                 </div>
@@ -130,58 +126,22 @@
                                 </div>
                             </div>
                             <!-- end row -->
-
+                            
                             <div class="card">
                                 <div class="card-body" style="position: relative;">
                                     <div class="d-flex flex-wrap align-items-start">
                                         <h5 class="card-title me-2">Visitors</h5>
-                                        <div class="ms-auto">
-                                            <div class="toolbar d-flex flex-wrap gap-2 text-end">
-                                                <button type="button" class="btn btn-light btn-sm">
-                                                    ALL
-                                                </button>
-                                                <button type="button" class="btn btn-light btn-sm">
-                                                    1M
-                                                </button>
-                                                <button type="button" class="btn btn-light btn-sm">
-                                                    6M
-                                                </button>
-                                                <button type="button" class="btn btn-light btn-sm active">
-                                                    1Y
-                                                </button>
-
-                                            </div>
-                                        </div>
+                                        
                                     </div>
-
-                                    <div class="row text-center">
-                                        <div class="col-lg-4">
-                                            <div class="mt-4">
-                                                <p class="text-muted mb-1">Today</p>
-                                                <h5>1024</h5>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-lg-4">
-                                            <div class="mt-4">
-                                                <p class="text-muted mb-1">This Month</p>
-                                                <h5>12356 <span class="text-success font-size-13">0.2 % <i
-                                                            class="mdi mdi-arrow-up ms-1"></i></span></h5>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-lg-4">
-                                            <div class="mt-4">
-                                                <p class="text-muted mb-1">This Year</p>
-                                                <h5>102354 <span class="text-success font-size-13">0.1 % <i
-                                                            class="mdi mdi-arrow-up ms-1"></i></span></h5>
-                                            </div>
-                                        </div>
-                                    </div>
-
+                                    
+                                    
+                                    
+                                    
                                 </div>
                             </div>
                         </div>
+                        <!-- end col -->
+                        
                         <div class="col-xl-4">
                             <div class="card">
                                 <div class="card-body">
@@ -195,66 +155,59 @@
                                                     <div class="text-muted">
                                                         <h5 class="mb-1"><%- fullname %> </h5>
                                                         <% if (roles == '1') { %>
-                                                        <p class="mb-0"> Administrator </p>
-                                                        <% }else{ %>
-                                                        <p class="mb-0"> Operation </p>
-                                                        <% } %>
+                                                            <p class="mb-0">Administrator</p>
+                                                            <% }else{ %>
+                                                                <p class="mb-0">Operator</p>
+                                                            <% } %> 
+                                                                
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-
-                                        
                                     </div>
                                     
-                                </div>
-                            </div>
-
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="d-flex flex-wrap align-items-start">
-                                        <h5 class="card-title mb-3 me-2">Subscribes</h5>
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="d-flex flex-wrap align-items-start">
+                                                <h5 class="card-title mb-3 me-2">TOP SENSOR SERVICE</h5>
+                                                
+                                                
+                                            </div>
+                                        </div>
                                     </div>
-
-                                    <div class="d-flex flex-wrap">
-                                        
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="d-flex flex-wrap align-items-start">
-                                        <h5 class="card-title mb-3 me-2">Subscribes</h5>
-                                    </div>
-
-                                    <div class="d-flex flex-wrap">
-                                        
+                                    
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="d-flex flex-wrap align-items-start">
+                                                <h5 class="card-title mb-3 me-2">TOP HTTP METHOD</h5>
+                                                
+                                                
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+                                <!-- end col -->
+                                
                             </div>
+                            
+                            <footer class="footer">
+                                <%- include('../partials/footer') %>
+                            </footer>
                         </div>
-
-
-
-
-
-
-                        <footer class="footer">
-                            <%- include('../partials/footer') %>
-                        </footer>
+                        <!-- end main content-->
+                        
                     </div>
-                    <!-- end main content-->
-
-                </div>
-                <!-- END layout-wrapper -->
-
-
-
-                <!-- Right bar overlay-->
-                <div class="rightbar-overlay"></div>
-
-                <%- include('../partials/js') %>
+                    <!-- END layout-wrapper -->
+                    
+                    
+                    
+                    <!-- Right bar overlay-->
+                    <div class="rightbar-overlay"></div>
+                    
+                    <%- include('../partials/js') %>
+                    <script src="assets/js/pages/dashboard.init.js"></script>
                     <script type="text/javascript">
                         toastr.info('Visited Dashboard!', 'Notification', {
                             "positionClass": "toast-top-right", "showDuration": "300",
@@ -263,6 +216,6 @@
                             "extendedTimeOut": "1000",
                         })
                     </script>
-</body>
-
-</html>
+                </body>
+                
+                </html>

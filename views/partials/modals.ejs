@@ -1,0 +1,117 @@
+<div id="myModal" class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel">FILTER</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <ul class="nav nav-pills nav-justified" role="tablist">
+                    <li class="nav-item waves-effect waves-light">
+                        <a class="nav-link active" data-bs-toggle="tab" href="#today" role="tab">
+                            <span class="d-block d-sm-none"><i class="fas fa-home"></i></span>
+                            <span class="d-none d-sm-block">TODAY</span> 
+                        </a>
+                    </li>
+                    <li class="nav-item waves-effect waves-light">
+                        <a class="nav-link" data-bs-toggle="tab" href="#weeks" role="tab">
+                            <span class="d-block d-sm-none"><i class="far fa-user"></i></span>
+                            <span class="d-none d-sm-block">WEEKS</span> 
+                        </a>
+                    </li>
+                    <li class="nav-item waves-effect waves-light">
+                        <a class="nav-link" data-bs-toggle="tab" href="#months" role="tab">
+                            <span class="d-block d-sm-none"><i class="far fa-envelope"></i></span>
+                            <span class="d-none d-sm-block">MONTHS</span>   
+                        </a>
+                    </li>
+                    <li class="nav-item waves-effect waves-light">
+                        <a class="nav-link" data-bs-toggle="tab" href="#years" role="tab">
+                            <span class="d-block d-sm-none"><i class="fas fa-cog"></i></span>
+                            <span class="d-none d-sm-block">YEARS</span>    
+                        </a>
+                    </li>
+                    <li class="nav-item waves-effect waves-light">
+                        <a class="nav-link" data-bs-toggle="tab" href="#extends" role="tab">
+                            <span class="d-block d-sm-none"><i class="fas fa-cog"></i></span>
+                            <span class="d-none d-sm-block">EXTENDS</span>    
+                        </a>
+                    </li>
+                </ul>
+            </div>
+             <!-- Tab panes -->
+             <div class="tab-content p-3 text-muted">
+                <div class="tab-pane active" id="today" role="tabpanel">
+                    <form class="custom-validation" action="#">
+                        <div class="mb-3">
+                            <label class="form-label">Parameter</label>
+                            <div class="hstack gap-3">
+                                <input class="form-control me-auto" type="text" placeholder="*"
+                                    aria-label="Add your item here...">
+                                <button type="button" class="btn btn-secondary">Search</button>
+                                <div class="vr"></div>
+                                <button type="button" class="btn btn-outline-danger">Reset</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="tab-pane" id="weeks" role="tabpanel">
+                    <form class="custom-validation" action="#">
+                        <div class="mb-3">
+                            <label class="form-label">Parameter</label>
+                            <div class="hstack gap-3">
+                                <input class="form-control me-auto" type="text" placeholder="*"
+                                    aria-label="Add your item here...">
+                                <button type="button" class="btn btn-secondary">Search</button>
+                                <div class="vr"></div>
+                                <button type="button" class="btn btn-outline-danger">Reset</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="tab-pane" id="months" role="tabpanel">
+                    <form class="custom-validation" action="#">
+                        <div class="mb-3">
+                            <label class="form-label">Parameter</label>
+                            <div class="hstack gap-3">
+                                <input class="form-control me-auto" type="text" placeholder="*"
+                                    aria-label="Add your item here...">
+                                <button type="button" class="btn btn-secondary">Search</button>
+                                <div class="vr"></div>
+                                <button type="button" class="btn btn-outline-danger">Reset</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="tab-pane" id="years" role="tabpanel">
+                    <form class="custom-validation" action="#">
+                        <div class="mb-3">
+                            <label class="form-label">Parameter</label>
+                            <div class="hstack gap-3">
+                                <input class="form-control me-auto" type="text" placeholder="*"
+                                    aria-label="Add your item here...">
+                                <button type="button" class="btn btn-secondary">Search</button>
+                                <div class="vr"></div>
+                                <button type="button" class="btn btn-outline-danger">Reset</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="tab-pane" id="extends" role="tabpanel">
+                    <form class="custom-validation" action="#">
+                        <div class="mb-3">
+                            <label class="form-label">Parameter</label>
+                            <div class="hstack gap-3">
+                                <input class="form-control me-auto" type="text" placeholder="*"
+                                    aria-label="Add your item here...">
+                                <button type="button" class="btn btn-secondary">Search</button>
+                                <div class="vr"></div>
+                                <button type="button" class="btn btn-outline-danger">Reset</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
