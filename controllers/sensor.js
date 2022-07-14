@@ -66,6 +66,27 @@ module.exports = {
                             }
                         }
                     },
+                    "impact": {
+                        "filters": {
+                          "filters": {
+                            "medium": {
+                              "query_string": {
+                                "query": "medium",
+                                "analyze_wildcard": true,
+                                "default_field": "apprisk.keyword"
+                              }
+                            },
+                            "elevated": {
+                              "query_string": {
+                                "query": "elevated",
+                                "analyze_wildcard": true,
+                                "default_field": "apprisk.keyword"
+                              }
+                            },
+            
+                          },
+                        }
+                      },
                     "top_method_sensor": {
                         "terms": {
                             "field": "httpmethod.keyword",

@@ -46,8 +46,8 @@ $(document).ready(function () {
         .then((response) => {
             var aggregation = response.aggregation;
             $('div.count-total').html(aggregation.total_data.value);
-            $('div.count-medium').html(aggregation.total_data.value);
-            $('div.count-elevated').html(aggregation.total_data.value);
+            $('div.count-medium').html(aggregation.impact.buckets.medium.doc_count);
+            $('div.count-elevated').html(aggregation.impact.buckets.elevated.doc_count);
         })
     }
     async function SeaSrch(parseAwal, parseAkhir, keyword, notifier) {
