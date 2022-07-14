@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var sequelize = require('sequelize');
+var toastr = require('toastr');
 // var bodyParser = require('body-parser');
 // var path = require('path');
 var session = require('express-session');
@@ -36,10 +37,10 @@ router.post('/auth', function (request, res) {
 						request.session.interval = result[0].interval;
 						request.session.avatar = result[0].avatar;
 						res.redirect('/dashboard');
+						
 					}else{
-            
 						res.render('pages/login',{"title" : "Login Page","status":"invalid"});
-						}
+					}
 				}else {
 					res.render('pages/login',{"title" : "Login Page","status":"invalid"});
 				}

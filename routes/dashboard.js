@@ -12,7 +12,16 @@ router.get('/', function(request, res, next) {
       if (err) throw err;
       console.log("1 record inserted");
     });
-    res.render('pages/index',{"title" : "Dashboard","menu":"Main","roles": request.session.roles,"fullname":request.session.fullname,"id":request.session.user_id,"interval":request.session.interval,"avatar":request.session.avatar,cat: 'dashboard'});
+    res.render('pages/index',{
+    "title" : "Dashboard | Tensor Security",
+    "menu":"Dashboard",
+    "submenu": "Main",
+    "roles": request.session.roles,
+    "fullname":request.session.fullname,
+    "id":request.session.user_id,
+    "interval":request.session.interval,
+    "avatar":request.session.avatar,
+    });
   }else {
 		res.redirect('/');
 	}

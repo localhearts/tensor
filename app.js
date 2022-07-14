@@ -7,9 +7,10 @@ var logger = require('morgan');
 require('dotenv').config()
 
 var indexRouter = require('./routes/index');
+var reportRouter = require('./routes/report');
+var tableRouter = require('./routes/table');
 var logoutRouter = require('./routes/logout');
 var apiRouter = require('./routes/api');
-var usersRouter = require('./routes/users');
 var dashboardRouter = require('./routes/dashboard');
 
 var app = express();
@@ -25,9 +26,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/', tableRouter);
+app.use('/', reportRouter);
 app.use('/dashboard',dashboardRouter);
 app.use('/api', apiRouter);
-app.use('/users', usersRouter);
 app.use('/logout', logoutRouter);
 
 
