@@ -83,7 +83,7 @@ $(document).ready(function () {
                         // Disable tooltips
                         pieSeries.tooltip.label.interactionsEnabled = true;
                         pieSeries.tooltip.keepTargetHover = true;
-                        pieSeries.slices.template.tooltipHTML = '<a class="text-white" data-bs-toggle="modal" data-bs-target="#{category}"><b>{category}</b></a>';
+                        pieSeries.slices.template.tooltipHTML = '<a class="text-white" data-bs-toggle="modal" data-bs-target="#datalist"><b>{category}</b></a>';
 
             // 3D PIE TOP DIRECTION
             
@@ -114,7 +114,7 @@ $(document).ready(function () {
             // Disable tooltips
             pieSeries.tooltip.label.interactionsEnabled = true;
             pieSeries.tooltip.keepTargetHover = true;
-            pieSeries.slices.template.tooltipHTML = '<a class="text-white" data-bs-toggle="modal" data-bs-target="#{category}"><b>{category}</b></a>';
+            pieSeries.slices.template.tooltipHTML = '<a class="text-white" data-bs-toggle="modal" data-bs-target="#datalist"><b>{category}</b></a>';
             
         })
     }
