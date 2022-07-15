@@ -53,7 +53,8 @@ $(document).ready(function () {
         $.post('../api/sensor/search/', params)
            .then((response) => {
                search_data = response.data;
-               $('#datatable').DataTable({
+              
+            $('#datatable').DataTable({
                    data: search_data,
                    destroy: true,
                    columns: [
@@ -64,10 +65,16 @@ $(document).ready(function () {
                                return get_Date.local().format('DD/MM/YYYY');
                            }
                        },
+                       {
+                        data:'_source.apprisk',
+                       }
                    ],
 
                });
+            
 
+
+            
            });
     }
     async function Search(parseAwal, parseAkhir, keyword) {
