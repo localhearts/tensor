@@ -15,5 +15,9 @@ router.get('/sensor/:type/:gte/:lte/:keyword'
 , function (req, res, next) {
     sensorController.list(req, res);
 });
+router.post('/sensor/search'
+, function (req, res, next) {
+    sensorController.filterByRisk(req, res);
+});
 
 module.exports = router;

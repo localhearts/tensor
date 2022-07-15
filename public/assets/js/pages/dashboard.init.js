@@ -1,4 +1,14 @@
 $(document).ready(function () {
+    $('.modal-app-risk').click(function() {
+
+         var href = $(this).data('bs-target');
+         var id = $(this).data('id');
+         var gte = "2022-07-15";
+         var lte = "2022-07-15";
+         ModalTables(gte, lte, id);
+     
+
+     });
     // $('input[name="datefilter"]').daterangepicker({
     //     autoUpdateInput: false,
     //     locale: {
@@ -34,10 +44,32 @@ $(document).ready(function () {
     var keyword = getParameterByName('keyword');
     var notifier = getParameterByName('notifier');
     var dt = getParameterByName('dt')
-    Search('2022-07-14','2022-07-14','*').then();
+    Search('2022-07-15','2022-07-15','*').then();
     
     
-    
+    async function ModalTables(gte, lte, id) {
+        var search_data = Array();
+        var params = { 'gte': gte, 'lte': lte, 'keyword': id }
+        $.post('../api/sensor/search/', params)
+           .then((response) => {
+               search_data = response.data;
+               $('#datatable').DataTable({
+                   data: search_data,
+                   destroy: true,
+                   columns: [
+                       {
+                           data: '_source.date',
+                           render: function (data, type, row, meta) {
+                               let get_Date = moment.tz(data, 'UTC');
+                               return get_Date.local().format('DD/MM/YYYY');
+                           }
+                       },
+                   ],
+
+               });
+
+           });
+    }
     async function Search(parseAwal, parseAkhir, keyword) {
         $('div.count-total').html('<div class="lds-facebook count-total"><div></div><div></div><div></div></div>');
         $('div.count-elevated').html('<div class="lds-facebook count-elevated"><div></div><div></div><div></div></div>');

@@ -245,14 +245,73 @@ module.exports = {
             }
         });
     },
-    search(req, res) {
+    filterByRisk(req, res) {
         const esIndex = process.env.INDEX_SENSOR;
-        const esType = req.params.type;
-        const keyword = req.params.keyword;
-        const gte = req.params.gte;
-        const lte = req.params.lte;
-        const notifier = req.params.notifier;
+        const esType = 'doc';
+        const keyword = req.body.keyword;
+        const gte = req.body.gte;
+        const lte = req.body.lte;
         const end = lte + "T23:59:59.999";
         const start = gte + "T00:00:00";
+        var allRecords = [];
+        
+        client.search({
+            index: esIndex,
+            type: esType,
+            scroll: '10s',
+            body: {
+                "query": {
+                    "bool": {
+                        "must": [
+                            {
+                                "query_string": {
+                                    "query": keyword,
+                                    "analyze_wildcard": true,
+                                    "default_field": "apprisk.keyword"
+                                }
+                            },
+                            {
+                                "range": {
+                                    "date": {
+                                        "time_zone": "+07:00",
+                                        "gte": start,
+                                        "lte": end
+                                    }
+                                }
+                            }
+                        ],
+                        "must_not": [],
+                        "should": []
+                    }
+                },
+                "sort":  [{
+                    "date": {
+                        "order": "desc",
+                    }
+                }],
+                
+                
+            }
+        }, function getMoreUntilDone(error, response) {
+            // collect all the records
+            response.hits.hits.forEach(function (hit) {
+                allRecords.push(hit);
+            });
+            
+            if (response.hits.total !== allRecords.length) {
+                // now we can call scroll over and over
+                client.scroll({
+                    scrollId: response._scroll_id,
+                    scroll: '10s'
+                }, getMoreUntilDone);
+            } else {
+                
+                res.status(200).send({
+                    draw: 1,
+                    data: allRecords,
+                    
+                })
+            }
+        });
     }
 };

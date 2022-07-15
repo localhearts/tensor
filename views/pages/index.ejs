@@ -2,6 +2,12 @@
 <html lang="en">
 
 <head>
+    <!-- DataTables -->
+    <link href="assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    
+    <!-- Responsive datatable examples -->
+    <link href="assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />     
     
     <%- include('../partials/head') %>
     
@@ -102,8 +108,8 @@
                                         <div class="avatar-sm ms-auto">
                                             <div class="avatar-title rounded-circle text-primary font-size-20"
                                             style="background:#900C3F;">
-                                            <button type="button" class="btn header-item noti-icon"
-                                            data-bs-toggle="modal" data-bs-target="#datalist">
+                                            <button type="button" class="btn header-item noti-icon modal-app-risk"
+                                            data-bs-toggle="modal" data-bs-target="#datalist" data-id="critical">
                                             
                                         </button>
                                         
@@ -129,8 +135,8 @@
                                 <div class="avatar-sm ms-auto">
                                     <div class="avatar-title rounded-circle text-primary font-size-20"
                                     style="background:#C70039;">
-                                    <button type="button" class="btn header-item noti-icon"
-                                    data-bs-toggle="modal" data-bs-target="#datalist">
+                                    <button type="button" class="btn header-item noti-icon modal-app-risk"
+                                    data-bs-toggle="modal" data-bs-target="#datalist" data-id="elevated">
                                     
                                 </button>
                             </div>
@@ -155,8 +161,8 @@
                         <div class="avatar-sm ms-auto">
                             <div class="avatar-title rounded-circle text-primary font-size-20"
                             style="background:#FF5733">
-                            <button type="button" class="btn header-item noti-icon"
-                            data-bs-toggle="modal" data-bs-target="#datalist">
+                            <button type="button" class="btn header-item noti-icon modal-app-risk"
+                            data-bs-toggle="modal" data-bs-target="#datalist" data-id="high">
                         </button>
                     </div>
                 </div>
@@ -180,8 +186,8 @@
                 <div class="avatar-sm ms-auto">
                     <div class="avatar-title rounded-circle text-primary font-size-20"
                     style="background:#FFC300;">
-                    <button type="button" class="btn header-item noti-icon"
-                    data-bs-toggle="modal" data-bs-target="#datalist">
+                    <button type="button" class="btn header-item noti-icon modal-app-risk"
+                    data-bs-toggle="modal" data-bs-target="#datalist" data-id="medium">
                     
                 </button>
             </div>
@@ -206,8 +212,8 @@
                 <div class="avatar-sm ms-auto">
                     <div class="avatar-title rounded-circle text-primary font-size-20"
                     style="background:#DAF7A6;">
-                    <button type="button" class="btn header-item noti-icon"
-                    data-bs-toggle="modal" data-bs-target="#datalist">
+                    <button type="button" class="btn header-item noti-icon modal-app-risk"
+                    data-bs-toggle="modal" data-bs-target="#datalist" data-id="low">
                     
                 </button>
             </div>
@@ -264,7 +270,20 @@
 <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
 <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
 <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+<!-- Required Moment JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.23/moment-timezone-with-data-2012-2022.min.js"></script>
+<!-- Required datatable js -->
+<script src="assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+<!-- Responsive examples -->
+<script src="assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+<script src="assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+
 <script src="assets/js/pages/dashboard.init.js"></script>
+
+
+
 <script type="text/javascript">
     toastr.info('Visited Dashboard!', 'Notification', {
         "positionClass": "toast-top-right", "showDuration": "300",
