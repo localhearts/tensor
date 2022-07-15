@@ -68,25 +68,46 @@ module.exports = {
                     },
                     "impact": {
                         "filters": {
-                          "filters": {
-                            "medium": {
-                              "query_string": {
-                                "query": "medium",
-                                "analyze_wildcard": true,
-                                "default_field": "apprisk.keyword"
-                              }
+                            "filters": {
+                                "medium": {
+                                    "query_string": {
+                                        "query": "medium",
+                                        "analyze_wildcard": true,
+                                        "default_field": "apprisk.keyword"
+                                    }
+                                },
+                                "elevated": {
+                                    "query_string": {
+                                        "query": "elevated",
+                                        "analyze_wildcard": true,
+                                        "default_field": "apprisk.keyword"
+                                    }
+                                },
+                                "low": {
+                                    "query_string": {
+                                        "query": "low",
+                                        "analyze_wildcard": true,
+                                        "default_field": "apprisk.keyword"
+                                    }
+                                },
+                                "critical": {
+                                    "query_string": {
+                                        "query": "critical",
+                                        "analyze_wildcard": true,
+                                        "default_field": "apprisk.keyword"
+                                    }
+                                },
+                                "high": {
+                                    "query_string": {
+                                        "query": "high",
+                                        "analyze_wildcard": true,
+                                        "default_field": "apprisk.keyword"
+                                    }
+                                },
+                                
                             },
-                            "elevated": {
-                              "query_string": {
-                                "query": "elevated",
-                                "analyze_wildcard": true,
-                                "default_field": "apprisk.keyword"
-                              }
-                            },
-            
-                          },
                         }
-                      },
+                    },
                     "top_method_sensor": {
                         "terms": {
                             "field": "httpmethod.keyword",
@@ -206,7 +227,7 @@ module.exports = {
                     },
                     "total_data": { "value_count": { "field": "_id" } },
                 }
-
+                
             }
         }, (err, result) => {
             if (err) {
@@ -219,7 +240,6 @@ module.exports = {
                 const agg = result.aggregations;
                 res.status(200).send({
                     status: 1,
-                    data: data,
                     aggregation: agg,
                 })
             }

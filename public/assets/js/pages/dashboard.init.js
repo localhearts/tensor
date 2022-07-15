@@ -42,12 +42,49 @@ $(document).ready(function () {
         $('div.count-total').html('<div class="lds-facebook count-total"><div></div><div></div><div></div></div>');
         $('div.count-elevated').html('<div class="lds-facebook count-elevated"><div></div><div></div><div></div></div>');
         $('div.count-medium').html('<div class="lds-facebook count-medium"><div></div><div></div><div></div></div>');
+        $('div.count-critical').html('<div class="lds-facebook count-critical"><div></div><div></div><div></div></div>');
+        $('div.count-high').html('<div class="lds-facebook count-high"><div></div><div></div><div></div></div>');
+        $('div.count-low').html('<div class="lds-facebook count-low"><div></div><div></div><div></div></div>');
         $.get('../api/sensor/doc/' + parseAwal + '/' + parseAkhir + '/' + keyword )
         .then((response) => {
             var aggregation = response.aggregation;
-            $('div.count-total').html(aggregation.total_data.value);
-            $('div.count-medium').html(aggregation.impact.buckets.medium.doc_count);
-            $('div.count-elevated').html(aggregation.impact.buckets.elevated.doc_count);
+            $('div.count-total').html(formatNumber(aggregation.total_data.value));
+            $('div.count-medium').html(formatNumber(aggregation.impact.buckets.medium.doc_count));
+            $('div.count-elevated').html(formatNumber(aggregation.impact.buckets.elevated.doc_count));
+            $('div.count-critical').html(formatNumber(aggregation.impact.buckets.critical.doc_count));
+            $('div.count-high').html(formatNumber(aggregation.impact.buckets.high.doc_count));
+            $('div.count-low').html(formatNumber(aggregation.impact.buckets.low.doc_count));
+                // 3D PIE TOP DIRECTION
+
+                var top_notifier = aggregation.top_direction.buckets;
+                am4core.useTheme(am4themes_animated);
+                // Themes end
+
+                // Create chart instance
+                var chart = am4core.create("topdirection", am4charts.PieChart3D);
+                chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
+
+                chart.legend = new am4charts.Legend();
+                chart.legend.position = "bottom";
+                chart.legend.labels.template.fill = am4core.color("#FFF");
+                chart.legend.valueLabels.template.fill = am4core.color("#FFF");
+
+
+                // Add data
+                chart.data = top_notifier;
+
+                // Add and configure Series
+                var pieSeries = chart.series.push(new am4charts.PieSeries3D());
+                pieSeries.dataFields.value = "doc_count";
+                pieSeries.dataFields.category = "key";
+                pieSeries.labels.template.disabled = true;
+                pieSeries.ticks.template.disabled = true;
+
+                // Disable tooltips
+                pieSeries.tooltip.label.interactionsEnabled = true;
+                pieSeries.tooltip.keepTargetHover = true;
+                pieSeries.slices.template.tooltipHTML = '<b>{category}</b><br><a href="dashboard?dt=other&keyword={category.urlEncode()}&datefilter=' + parseAwal + '+-+' + parseAkhir + '&notifier=*">More info</a>';
+
         })
     }
     async function SeaSrch(parseAwal, parseAkhir, keyword, notifier) {
@@ -566,6 +603,9 @@ $(document).ready(function () {
         var today = new Date();
         var lastWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7);
         return lastWeek;
+    }
+    function formatNumber(num) {
+        return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
     }
 
 });
