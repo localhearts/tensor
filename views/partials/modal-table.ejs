@@ -1,23 +1,42 @@
-<div id="datalist" class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="myModalLabel">DATA LIST</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="table-responsive export-table">
-                    <table class="table table-bordered text-nowrap key-buttons border-bottom" id="datatable">
-                        <thead>
-                            <tr>
-                            <th class="text-center">DATE</th>
-                            <th class="text-center">APP RISK</th>
-                            </tr>
-                          </thead>
-                    </table>
-                </div>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
+<div
+  id="datalist"
+  class="modal fade"
+  tabindex="-1"
+  aria-labelledby="myModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="myModalLabel">DATA LIST</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="table-responsive export-table">
+          <table
+            class="table table-bordered text-nowrap key-buttons border-bottom"
+            id="datatable"
+          >
+            <thead>
+              <tr>
+                <th class="text-center">DATE</th>
+                <th class="text-center">APP RISK</th>
+                <th class="text-center">SRCCOUNTRY</th>
+                <th class="text-center">MESSAGE</th>
+              </tr>
+            </thead>
+          </table>
+          <div class="loading" id="loadingComponent">Loading ...</div>
+        </div>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
