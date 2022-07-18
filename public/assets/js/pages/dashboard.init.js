@@ -1,11 +1,12 @@
 $(document).ready(function () {
     $('.modal-app-risk').click(function() {
-
+        $('#datatable').DataTable({destroy: true}).destroy();
          var href = $(this).data('bs-target');
          var id = $(this).data('id');
          var gte = "2022-07-15";
          var lte = "2022-07-15";
          ModalTables(gte, lte, id);
+         console.log(href);
      
 
      });
