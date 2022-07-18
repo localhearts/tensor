@@ -24,4 +24,9 @@ router.post('/sensor/service/search'
     sensorController.filterByService(req, res);
 });
 
+router.post('/sensor/direction/search'
+, function (req, res, next) {
+    sensorController.filterByDirection(req, res);
+});
+
 module.exports = router;
