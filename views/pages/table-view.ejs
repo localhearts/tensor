@@ -56,99 +56,40 @@
                                 </div>
 
                             </div>
-
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <table id="datatable-buttons" class="table table-bordered dt-responsive nowrap w-100">
-                                            <thead>
-                                            <tr>
-                                                <th>Time</th>
-                                        <th>action</th>
-                                        <th>agent</th>
-                                        <th>app</th>
-                                        <th>appcat</th>
-                                        <th>appid</th>
-                                        <th>apprisk</th>
-                                        <th>cat</th>
-                                        <th>catdesk</th>
-                                        <th>countapp</th>
-                                        <th>countdns</th>
-                                        <th>countweb</th>
-                                        <th>craction</th>
-                                        <th>crlevel</th>
-                                        <th>crscore</th>
-                                        <th>date</th>
-                                        <th>datetime</th>
-                                        <th>devid</th>
-                                        <th>devname</th>
-                                        <th>direction</th>
-                                        <th>dscountry</th>
-                                        <th>dstintf</th>
-                                        <th>dstintfrole</th>
-                                        <th>dstport</th>
-                                        <th>dstip</th>
-                                        <th>duration</th>
-                                        <th>eventype</th>
-                                        <th>eventtime</th>
-                                        <th>dstuiid</th>
-                                        <th>host</th>
-                                        <th>hostname</th>
-                                        <th>httpmethod</th>
-                                        <th>incidentserialno</th>
-                                        <th>level</th>
-                                        <th>logid</th>
-                                        <th>message</th>
-                                        <th>msg</th>
-                                        <th>path</th>
-                                        <th>policyid</th>
-                                        <th>policyname</th>
-                                        <th>policytype</th>
-                                        <th>poluuid</th>
-                                        <th>profile</th>
-                                        <th>proto</th>
-                                        <th>ratemethod</th>
-                                        <th>rcvdbyte</th>
-                                        <th>rcvddelta</th>
-                                        <th>rcvdpkt</th>
-                                        <th>referralurl</th>
-                                        <th>group</th>
-                                        <th>reqtype</th>
-                                        <th>scertcname</th>
-                                        <th>scertissuer</th>
-                                        <th>sentbyte</th>
-                                        <th>sentdelta</th>
-                                        <th>sentpkt</th>
-                                        <th>service</th>
-                                        <th>sessionid</th>
-                                        <th>srccountry</th>
-                                        <th>srcintf</th>
-                                        <th>srcintfrole</th>
-                                        <th>srcip</th>
-                                        <th>srcport</th>
-                                        <th>srcuuid</th>
-                                        <th>subtype</th>
-                                        <th>time</th>
-                                        <th>trandisp</th>
-                                        <th>tranip</th>
-                                        <th>tranport</th>
-                                        <th>transip</th>
-                                        <th>transport</th>
-                                        <th>type</th>
-                                        <th>tz</th>
-                                        <th>url</th>
-                                        <th>user</th>
-                                        <th>utmaction</th>
-                                        <th>vd</th>
-                                    </tr>
-                                 </thead>
-    
-                                        </table>
-                                    </div>
-                                </div>
-                            </div> <!-- end col -->
-                        </div> <!-- end row -->
+                            <div class="modal-body">
+                                <div class="table-responsive export-table">
+                                <table
+                                    class="table table-bordered text-nowrap key-buttons border-bottom"
+                                    id="datatable"
+                                >
+                                    <thead>
+                                    <tr>
+                                        <th class="text-center">action</th>
+                                        <th class="text-center">app</th>
+                                        <th class="text-center">appid</th>
+                                        <th class="text-center">apprisk</th>
+                                        <th class="text-center">crlevel</th>
+                                        <th class="text-center">datetime</th>
+                                        <th class="text-center">devname</th>
+                                        <th class="text-center">document_id</th>
+                                        <th class="text-center">dstport</th>
+                                        <th class="text-center">dstip</th>
+                                        <th class="text-center">eventype</th>
+                                        <th class="text-center">host</th>
+                                        <th class="text-center">level</th>
+                                        <th class="text-center">message</th>
+                                        <th class="text-center">path</th>
+                                        <th class="text-center">policyid</th>
+                                        <th class="text-center">service</th>
+                                        <th class="text-center">sessionid</th>
+                                        <th class="text-center">srccountry</th>
+                                        <th class="text-center">time</th>
+                                        <th class="text-center">type</th>
+                                </tr>
+                                </thead>
+                            </table>
+                            </div>
+                            </div>
                         </div>
                     </div>
                     <!-- end page title -->
@@ -173,6 +114,13 @@
             <div class="rightbar-overlay"></div>
 
             <%- include('../partials/js') %>
+
+                <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+                <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+                <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+
+                <script src="assets/js/pages/dashboard.init.js"></script>
+
                 <script type="text/javascript">
                     toastr.info('Visited Table View!', 'Notification', {
                         "positionClass": "toast-top-right", "showDuration": "300",
