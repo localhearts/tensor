@@ -303,10 +303,16 @@ $(document).ready(function () {
               },
             },
             {
-              data: "_source.apprisk",
+              data: "_source",
+              render: function (data, type, row, meta) {
+                return data.apprisk ? data.apprisk : "-";
+              },
             },
             {
-              data: "_source.srccountry",
+              data: "_source",
+              render: function (data, type, row, meta) {
+                return data.srccountry ? data.srccountry : "-";
+              },
             },
             {
               data: "_source",
@@ -321,7 +327,10 @@ $(document).ready(function () {
               },
             },
             {
-              data: "_source.path",
+              data: "_source",
+              render: function (data, type, row, meta) {
+                return data.path ? data.path : "-";
+              },
             },
             {
               data: "_source",
@@ -330,13 +339,22 @@ $(document).ready(function () {
               },
             },
             {
-              data: "_source.srcip",
+              data: "_source",
+              render: function (data, type, row, meta) {
+                return data.srcip ? data.srcip : "-";
+              },
             },
             {
-              data: "_source.devname",
+              data: "_source",
+              render: function (data, type, row, meta) {
+                return data.devname ? data.devname : "-";
+              },
             },
             {
-              data: "_source.level",
+              data: "_source",
+              render: function (data, type, row, meta) {
+                return data.level ? data.level : "-";
+              },
             },
             {
               data: "_source",
@@ -345,7 +363,10 @@ $(document).ready(function () {
               },
             },
             {
-              data: "_source.service",
+              data: "_source",
+              render: function (data, type, row, meta) {
+                return data.service ? data.service : "-";
+              },
             },
           ],
         });
@@ -427,8 +448,7 @@ $(document).ready(function () {
       // Disable tooltips
       pieSeries.tooltip.label.interactionsEnabled = true;
       pieSeries.tooltip.keepTargetHover = true;
-      pieSeries.slices.template.tooltipHTML =
-        '<a class="text-white modal-app-risk" data-bs-toggle="modal" data-bs-target="#datalist" data-id="{category}">{category}</a>';
+      pieSeries.slices.template.tooltipHTML = '<a class="text-white modal-app-risk" data-bs-toggle="modal" data-bs-target="#datalist" data-id="{category}">{category}</a>';
 
       // 3D PIE TOP DIRECTION
 
@@ -458,9 +478,67 @@ $(document).ready(function () {
       // Disable tooltips
       pieSeries.tooltip.label.interactionsEnabled = true;
       pieSeries.tooltip.keepTargetHover = true;
-      pieSeries.slices.template.tooltipHTML =
-        '<a class="text-white modal-app-risk" data-bs-toggle="modal" data-bs-target="#datalist" data-id="{category}">{category}</a>';
+      pieSeries.slices.template.tooltipHTML = '<a class="text-white modal-app-risk" data-bs-toggle="modal" data-bs-target="#datalist" data-id="{category}">{category}</a>';
+      
+      $('#srccountrycloud').ready(function () {
+        var srccountry = aggregation.country_tag_src.buckets;
+        am4core.useTheme(am4themes_animated);
+        var chart = am4core.create("srccountrycloud", am4plugins_wordCloud.WordCloud);
+        chart.fontFamily = "Courier New";
+        var series = chart.series.push(new am4plugins_wordCloud.WordCloudSeries());
+  
+        series.randomness = 0.1;
+        series.rotationThreshold = 0.5;
+        series.minWordLength = 2;
+        series.data = srccountry;
+        series.dataFields.word = "key";
+        series.dataFields.value = "doc_count";
+        series.heatRules.push({
+            "target": series.labels.template,
+            "property": "fill",
+            "min": am4core.color("#FF5733"),
+            "max": am4core.color("#FFC300"),
+            "dataField": "value"
+        });
+  
+        series.tooltip.label.interactionsEnabled = true;
+        series.tooltip.keepTargetHover = true;
+        //series.labels.template.urlTarget = "_blank";
+        series.labels.template.tooltipHTML = '<a class="text-white modal-app-risk" data-bs-toggle="modal" data-bs-target="#datalist" data-id="{word}">{word}</a>';
+  
+  
     });
+    $('#dstcountrycloud').ready(function () {
+        var dstcountry = aggregation.country_tag_dst.buckets;
+        am4core.useTheme(am4themes_animated);
+        var chart = am4core.create("dstcountrycloud", am4plugins_wordCloud.WordCloud);
+        chart.fontFamily = "Courier New";
+        var series = chart.series.push(new am4plugins_wordCloud.WordCloudSeries());
+  
+        series.randomness = 0.1;
+        series.rotationThreshold = 0.5;
+        series.minWordLength = 2;
+        series.data = dstcountry;
+        series.dataFields.word = "key";
+        series.dataFields.value = "doc_count";
+        series.heatRules.push({
+            "target": series.labels.template,
+            "property": "fill",
+            "min": am4core.color("#FF5733"),
+            "max": am4core.color("#FFC300"),
+            "dataField": "value"
+        });
+        series.tooltip.label.interactionsEnabled = true;
+        series.tooltip.keepTargetHover = true;
+        //series.labels.template.urlTarget = "_blank";
+        series.labels.template.tooltipHTML = '<a class="text-white modal-app-risk" data-bs-toggle="modal" data-bs-target="#datalist" data-id="{word}">{word}</a>';
+  
+  
+    });
+
+    });
+
+   
   }
 
   function getParameterByName(name, url = window.location.href) {
