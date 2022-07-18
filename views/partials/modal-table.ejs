@@ -12,6 +12,7 @@
         <button
           type="button"
           class="btn-close"
+          id="btn-close"
           data-bs-dismiss="modal"
           aria-label="Close"
         ></button>
@@ -20,18 +21,27 @@
         <div class="table-responsive export-table">
           <table
             class="table table-bordered text-nowrap key-buttons border-bottom"
-            id="datatable"
-          >
+            id="datatable">
             <thead>
               <tr>
                 <th class="text-center">DATE</th>
                 <th class="text-center">APP RISK</th>
                 <th class="text-center">SRCCOUNTRY</th>
                 <th class="text-center">MESSAGE</th>
+                <th class="text-center">RATE METHOD</th>
+                <th class="text-center">PATH</th>
+                <th class="text-center">HOSTNAME</th>
+                <th class="text-center">SRC IP</th>
+                <th class="text-center">DEV NAME</th>
+                <th class="text-center">LEVEL</th>
+                <th class="text-center">DIRECTION</th>
+                <th class="text-center">SERVICE</th>
               </tr>
             </thead>
           </table>
-          <div class="loading" id="loadingComponent">Loading ...</div>
+          <div class="text-center">
+          <div class="lds-facebook" id="lds-facebook"><div></div><div></div><div></div></div>
+        </div>
         </div>
       </div>
     </div>
