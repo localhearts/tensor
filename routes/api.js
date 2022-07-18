@@ -15,9 +15,13 @@ router.get('/sensor/:type/:gte/:lte/:keyword'
 , function (req, res, next) {
     sensorController.list(req, res);
 });
-router.post('/sensor/search'
+router.post('/sensor/tables/search'
 , function (req, res, next) {
     sensorController.filterByRisk(req, res);
+});
+router.post('/sensor/service/search'
+, function (req, res, next) {
+    sensorController.filterByService(req, res);
 });
 
 module.exports = router;

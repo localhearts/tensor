@@ -260,6 +260,9 @@ module.exports = {
             type: esType,
             scroll: '10s',
             body: {
+                "_source": [
+                    "date", "apprisk","srccountry","msg","httpmethod","path","hostname","srcip","devname","level","direction","service"
+                  ],
                 "query": {
                     "bool": {
                         "must": [
@@ -268,6 +271,78 @@ module.exports = {
                                     "query": keyword,
                                     "analyze_wildcard": true,
                                     "default_field": "apprisk.keyword"
+                                }
+                            },
+                            {
+                                "range": {
+                                    "date": {
+                                        "time_zone": "+07:00",
+                                        "gte": start,
+                                        "lte": end
+                                    }
+                                }
+                            }
+                        ],
+                        "must_not": [],
+                        "should": []
+                    }
+                },
+                "sort":  [{
+                    "date": {
+                        "order": "desc",
+                    }
+                }],
+                
+                
+            }
+        }, function getMoreUntilDone(error, response) {
+            // collect all the records
+            response.hits.hits.forEach(function (hit) {
+                allRecords.push(hit);
+            });
+            
+            if (response.hits.total !== allRecords.length) {
+                // now we can call scroll over and over
+                client.scroll({
+                    scrollId: response._scroll_id,
+                    scroll: '10s'
+                }, getMoreUntilDone);
+            } else {
+                
+                res.status(200).send({
+                    draw: 1,
+                    data: allRecords,
+                    
+                })
+            }
+        });
+    },
+    filterByService(req, res) {
+        const esIndex = process.env.INDEX_SENSOR;
+        const esType = 'doc';
+        const keyword = req.body.keyword;
+        const gte = req.body.gte;
+        const lte = req.body.lte;
+        const end = lte + "T23:59:59.999";
+        const start = gte + "T00:00:00";
+        var allRecords = [];
+        
+        client.search({
+            index: esIndex,
+            type: esType,
+            scroll: '10s',
+            body: {
+                "_source": [
+                    "date", "apprisk","srccountry","msg","httpmethod","path","hostname","srcip","devname","level","direction","service"
+                  ],
+                "query": {
+                    "bool": {
+                        "must": [
+                            {
+                                "query_string": {
+                                    "query": keyword,
+                                    "analyze_wildcard": true,
+                                    "default_field": "service.keyword"
                                 }
                             },
                             {
