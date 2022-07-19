@@ -701,9 +701,9 @@ $(document).ready(function () {
       pieSeries.slices.template.tooltipHTML =
         '<a class="text-white modal-app-risk" data-bs-toggle="modal" data-bs-target="#datalist" data-id="{category}">{category}</a>';
 
-      // 3D PIE TOP DIRECTION
+      // 3D PIE top_method_sensor
 
-      var top_notifier = aggregation.top_direction.buckets;
+      var top_method_sensor = aggregation.top_method_sensor.buckets;
       am4core.useTheme(am4themes_animated);
       // Themes end
 
@@ -712,12 +712,12 @@ $(document).ready(function () {
       chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
 
       chart.legend = new am4charts.Legend();
-      chart.legend.position = "top";
+      chart.legend.position = "right";
       chart.legend.labels.template.fill = am4core.color("#FFF");
       chart.legend.valueLabels.template.fill = am4core.color("#FFF");
 
       // Add data
-      chart.data = top_notifier;
+      chart.data = top_method_sensor;
 
       // Add and configure Series
       var pieSeries = chart.series.push(new am4charts.PieSeries3D());
@@ -729,8 +729,7 @@ $(document).ready(function () {
       // Disable tooltips
       pieSeries.tooltip.label.interactionsEnabled = true;
       pieSeries.tooltip.keepTargetHover = true;
-      pieSeries.slices.template.tooltipHTML =
-        '<a class="text-white modal-app-risk" data-bs-toggle="modal" data-bs-target="#datalist" data-id="{category}">{category}</a>';
+      pieSeries.slices.template.tooltipHTML = '<a class="text-white modal-app-risk" data-bs-toggle="modal" data-bs-target="#datalist" data-id="{category}">{category}</a>';
 
       $("#srccountrycloud").ready(function () {
         var srccountry = aggregation.country_tag_src.buckets;
@@ -795,6 +794,205 @@ $(document).ready(function () {
         series.labels.template.tooltipHTML =
           '<a class="text-white modal-app-risk" data-bs-toggle="modal" data-bs-target="#datalist" data-id="{word}">{word}</a>';
       });
+      var srcport = aggregation.top_srcport.buckets;
+      $('#datatable-src').DataTable({
+        order: [],
+        data: srcport,
+        columns: [
+          { data: 'key' },
+          { data: 'doc_count' },
+        ],
+
+      });
+      var dstport = aggregation.top_dstport.buckets;
+      $('#datatable-dst').DataTable({
+        order: [],
+        data: dstport,
+        columns: [
+          { data: 'key' },
+          { data: 'doc_count' },
+
+        ],
+
+      });
+
+      // 3D PIE TOP APP CAT
+      var top_appcat = aggregation.top_appcat.buckets;
+      am4core.useTheme(am4themes_animated);
+      // Themes end
+
+      // Create chart instance
+      var chart = am4core.create("topappcat", am4charts.PieChart3D);
+      chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
+
+      chart.legend = new am4charts.Legend();
+      chart.legend.position = "right";
+      chart.legend.labels.template.fill = am4core.color("#FFF");
+      chart.legend.valueLabels.template.fill = am4core.color("#FFF");
+
+      // Add data
+      chart.data = top_appcat;
+      chart.innerRadius = 80;
+
+      // Add and configure Series
+      var pieSeries = chart.series.push(new am4charts.PieSeries3D());
+      pieSeries.dataFields.value = "doc_count";
+      pieSeries.dataFields.category = "key";
+      pieSeries.labels.template.disabled = true;
+      pieSeries.ticks.template.disabled = true;
+
+      // Disable tooltips
+      pieSeries.tooltip.label.interactionsEnabled = true;
+      pieSeries.tooltip.keepTargetHover = true;
+      pieSeries.slices.template.tooltipHTML = '<a class="text-white modal-app-risk" data-bs-toggle="modal" data-bs-target="#datalist" data-id="{category}">{category}</a>';
+
+      // 3D PIE TOP APP
+      var top_app = aggregation.top_app.buckets;
+      am4core.useTheme(am4themes_animated);
+      // Themes end
+
+      // Create chart instance
+      var chart = am4core.create("topapp", am4charts.PieChart3D);
+      chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
+
+      chart.legend = new am4charts.Legend();
+      chart.legend.position = "right";
+      chart.legend.labels.template.fill = am4core.color("#FFF");
+      chart.legend.valueLabels.template.fill = am4core.color("#FFF");
+
+      // Add data
+      chart.data = top_app;
+      chart.innerRadius = 80;
+
+      // Add and configure Series
+      var pieSeries = chart.series.push(new am4charts.PieSeries3D());
+      pieSeries.dataFields.value = "doc_count";
+      pieSeries.dataFields.category = "key";
+      pieSeries.labels.template.disabled = true;
+      pieSeries.ticks.template.disabled = true;
+
+      // Disable tooltips
+      pieSeries.tooltip.label.interactionsEnabled = true;
+      pieSeries.tooltip.keepTargetHover = true;
+      pieSeries.slices.template.tooltipHTML = '<a class="text-white modal-app-risk" data-bs-toggle="modal" data-bs-target="#datalist" data-id="{category}">{category}</a>';
+
+
+
+
+
+      // COLUMN CHART TOP DIRECTION
+      var top_direction = aggregation.top_direction.buckets;
+      am4core.useTheme(am4themes_animated);
+      // Themes end
+
+      // Create chart instance
+      var chart = am4core.create("topsd", am4charts.XYChart3D);
+      // Add data
+      chart.data = top_direction;
+
+      // Create axes
+      var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+      categoryAxis.dataFields.category = "key";
+      categoryAxis.renderer.labels.template.rotation = 270;
+      categoryAxis.renderer.labels.template.hideOversized = false;
+      categoryAxis.renderer.minGridDistance = 20;
+      categoryAxis.renderer.labels.template.horizontalCenter = "right";
+      categoryAxis.renderer.labels.template.verticalCenter = "middle";
+      categoryAxis.tooltip.label.rotation = 270;
+      categoryAxis.tooltip.label.horizontalCenter = "right";
+      categoryAxis.tooltip.label.verticalCenter = "middle";
+      categoryAxis.renderer.labels.template.fill = am4core.color("#FFFFFF");
+
+      var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+      valueAxis.title.text = "Directions";
+      valueAxis.title.fontWeight = "600";
+      valueAxis.title.fill = am4core.color("#FFF");
+      valueAxis.renderer.labels.template.fill = am4core.color("#FFF");
+      
+
+      // Create series
+      var series = chart.series.push(new am4charts.ColumnSeries3D());
+      series.dataFields.valueY = "doc_count";
+      series.dataFields.categoryX = "key";
+      series.name = "Total";
+      series.tooltip.keepTargetHover = true;
+      series.tooltip.label.interactionsEnabled = true;
+      series.tooltipHTML = '<a class="text-white modal-app-risk" data-bs-toggle="modal" data-bs-target="#datalist" data-id="{categoryX}">{categoryX} : {valueY}</a>';
+
+      var columnTemplate = series.columns.template;
+      columnTemplate.strokeWidth = 2;
+      columnTemplate.strokeOpacity = 1;
+      columnTemplate.stroke = am4core.color("#FFFFFF");
+
+      columnTemplate.adapter.add("fill", function (fill, target) {
+        return chart.colors.getIndex(target.dataItem.index);
+      })
+
+      columnTemplate.adapter.add("stroke", function (stroke, target) {
+        return chart.colors.getIndex(target.dataItem.index);
+      })
+
+      chart.cursor = new am4charts.XYCursor();
+      chart.cursor.lineX.strokeOpacity = 0;
+      chart.cursor.lineY.strokeOpacity = 0;
+
+
+      // COLUMN CHART TOP DIRECTION
+      var top_app_risk = aggregation.top_app_risk.buckets;
+      am4core.useTheme(am4themes_animated);
+      // Themes end
+
+      // Create chart instance
+      var chart = am4core.create("toprisk", am4charts.XYChart3D);
+      // Add data
+      chart.data = top_app_risk;
+
+      // Create axes
+      var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+      categoryAxis.dataFields.category = "key";
+      categoryAxis.renderer.labels.template.rotation = 270;
+      categoryAxis.renderer.labels.template.hideOversized = false;
+      categoryAxis.renderer.minGridDistance = 20;
+      categoryAxis.renderer.labels.template.horizontalCenter = "right";
+      categoryAxis.renderer.labels.template.verticalCenter = "middle";
+      categoryAxis.tooltip.label.rotation = 270;
+      categoryAxis.tooltip.label.horizontalCenter = "right";
+      categoryAxis.tooltip.label.verticalCenter = "middle";
+      categoryAxis.renderer.labels.template.fill = am4core.color("#FFFFFF");
+
+      var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+      valueAxis.title.text = "Directions";
+      valueAxis.title.fontWeight = "600";
+      valueAxis.title.fill = am4core.color("#FFF");
+      valueAxis.renderer.labels.template.fill = am4core.color("#FFF");
+      
+
+      // Create series
+      var series = chart.series.push(new am4charts.ColumnSeries3D());
+      series.dataFields.valueY = "doc_count";
+      series.dataFields.categoryX = "key";
+      series.name = "Total";
+      series.tooltip.keepTargetHover = true;
+      series.tooltip.label.interactionsEnabled = true;
+      series.tooltipHTML = '<a class="text-white modal-app-risk" data-bs-toggle="modal" data-bs-target="#datalist" data-id="{categoryX}">{categoryX} : {valueY}</a>';
+
+      var columnTemplate = series.columns.template;
+      columnTemplate.strokeWidth = 2;
+      columnTemplate.strokeOpacity = 1;
+      columnTemplate.stroke = am4core.color("#FFFFFF");
+
+      columnTemplate.adapter.add("fill", function (fill, target) {
+        return chart.colors.getIndex(target.dataItem.index);
+      })
+
+      columnTemplate.adapter.add("stroke", function (stroke, target) {
+        return chart.colors.getIndex(target.dataItem.index);
+      })
+
+      chart.cursor = new am4charts.XYCursor();
+      chart.cursor.lineX.strokeOpacity = 0;
+      chart.cursor.lineY.strokeOpacity = 0;
+
     });
   }
 

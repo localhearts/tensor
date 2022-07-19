@@ -4,10 +4,12 @@
 <head>
     <!-- DataTables -->
     <link href="assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <link href="assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet"
+    type="text/css" />
     
     <!-- Responsive datatable examples -->
-    <link href="assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />     
+    <link href="assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet"
+    type="text/css" />
     
     <%- include('../partials/head') %>
     
@@ -108,8 +110,10 @@
                                         <div class="avatar-sm ms-auto">
                                             <div class="avatar-title rounded-circle text-primary font-size-20"
                                             style="background:#900C3F;">
-                                            <button type="button" class="btn header-item noti-icon modal-app-risk"
-                                            data-bs-toggle="modal" data-bs-target="#datalist" data-id="critical">
+                                            <button type="button"
+                                            class="btn header-item noti-icon modal-app-risk"
+                                            data-bs-toggle="modal" data-bs-target="#datalist"
+                                            data-id="critical">
                                             
                                         </button>
                                         
@@ -135,8 +139,10 @@
                                 <div class="avatar-sm ms-auto">
                                     <div class="avatar-title rounded-circle text-primary font-size-20"
                                     style="background:#C70039;">
-                                    <button type="button" class="btn header-item noti-icon modal-app-risk"
-                                    data-bs-toggle="modal" data-bs-target="#datalist" data-id="elevated">
+                                    <button type="button"
+                                    class="btn header-item noti-icon modal-app-risk"
+                                    data-bs-toggle="modal" data-bs-target="#datalist"
+                                    data-id="elevated">
                                     
                                 </button>
                             </div>
@@ -161,8 +167,10 @@
                         <div class="avatar-sm ms-auto">
                             <div class="avatar-title rounded-circle text-primary font-size-20"
                             style="background:#FF5733">
-                            <button type="button" class="btn header-item noti-icon modal-app-risk"
-                            data-bs-toggle="modal" data-bs-target="#datalist" data-id="high">
+                            <button type="button"
+                            class="btn header-item noti-icon modal-app-risk"
+                            data-bs-toggle="modal" data-bs-target="#datalist"
+                            data-id="high">
                         </button>
                     </div>
                 </div>
@@ -186,8 +194,10 @@
                 <div class="avatar-sm ms-auto">
                     <div class="avatar-title rounded-circle text-primary font-size-20"
                     style="background:#FFC300;">
-                    <button type="button" class="btn header-item noti-icon modal-app-risk"
-                    data-bs-toggle="modal" data-bs-target="#datalist" data-id="medium">
+                    <button type="button"
+                    class="btn header-item noti-icon modal-app-risk"
+                    data-bs-toggle="modal" data-bs-target="#datalist"
+                    data-id="medium">
                     
                 </button>
             </div>
@@ -212,8 +222,10 @@
                 <div class="avatar-sm ms-auto">
                     <div class="avatar-title rounded-circle text-primary font-size-20"
                     style="background:#DAF7A6;">
-                    <button type="button" class="btn header-item noti-icon modal-app-risk"
-                    data-bs-toggle="modal" data-bs-target="#datalist" data-id="low">
+                    <button type="button"
+                    class="btn header-item noti-icon modal-app-risk"
+                    data-bs-toggle="modal" data-bs-target="#datalist"
+                    data-id="low">
                     
                 </button>
             </div>
@@ -241,7 +253,7 @@
     <div class="col-xl-6">
         <div class="card">
             <div class="card-header bg-transparent border-bottom text-uppercase">
-                TOP DIRECTION SERVICE
+                TOP HTTP METHOD SERVICE
             </div>
             <div class="card-body">
                 <div id="topdirection"></div>
@@ -277,7 +289,102 @@
             </div>
         </div>
     </div>
+    <div class="col-xl-6">
+        <div class="card">
+            <div class="card-header bg-transparent border-bottom text-uppercase">
+                SENSOR TOP 10 DST PORT
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered text-nowrap key-buttons border-bottom" id="datatable-dst">
+                    <thead>
+                        <tr>
+                            <th class="text-center">PORT</th>
+                            <th class="text-center">COUNT</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            
+            <div class="card-footer bg-transparent border-top text-muted">
+                2 days ago
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6">
+        <div class="card">
+            <div class="card-header bg-transparent border-bottom text-uppercase">
+                SENSOR TOP 10 SRC PORT
+            </div>
+            <div class="card-body">
+                
+                <table class="table table-bordered text-nowrap key-buttons border-bottom" id="datatable-src">
+                    <thead>
+                        <tr>
+                            <th class="text-center">PORT</th>
+                            <th class="text-center">COUNT</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="card-footer bg-transparent border-top text-muted">
+                2 days ago
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6">
+        <div class="card">
+            <div class="card-header bg-transparent border-bottom text-uppercase">
+                TOP 10 APP
+            </div>
+            <div class="card-body">
+                <div id="topapp"></div>
+            </div>
+            <div class="card-footer bg-transparent border-top text-muted">
+                2 days ago
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6">
+        <div class="card">
+            <div class="card-header bg-transparent border-bottom text-uppercase">
+                TOP 10 APP CATEGORY
+            </div>
+            <div class="card-body">
+                <div id="topappcat"></div>
+            </div>
+            <div class="card-footer bg-transparent border-top text-muted">
+                2 days ago
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6">
+        <div class="card">
+            <div class="card-header bg-transparent border-bottom text-uppercase">
+                TOP 10 APP RISK
+            </div>
+            <div class="card-body">
+                <div id="toprisk"></div>
+            </div>
+            <div class="card-footer bg-transparent border-top text-muted">
+                2 days ago
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6">
+        <div class="card">
+            <div class="card-header bg-transparent border-bottom text-uppercase">
+                TOP 10 SENSOR DIRECTION
+            </div>
+            <div class="card-body">
+                <div id="topsd"></div>
+            </div>
+            <div class="card-footer bg-transparent border-top text-muted">
+                2 days ago
+            </div>
+        </div>
+    </div>
 </div>
+
 <footer class="footer">
     <%- include('../partials/footer') %>
 </footer>
@@ -297,14 +404,18 @@
 <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
 <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
 <!-- Required Moment JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.23/moment-timezone-with-data-2012-2022.min.js"></script>
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.23/moment-timezone-with-data-2012-2022.min.js"></script>
 <!-- Required datatable js -->
 <script src="assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
 <!-- Responsive examples -->
-<script src="assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-<script src="assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+<script
+src="assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+<script
+src="assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
 
 <script src="assets/js/pages/dashboard.init.js"></script>
 <script src="https://cdn.amcharts.com/lib/4/plugins/wordCloud.js"></script>

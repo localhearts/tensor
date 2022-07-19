@@ -6,6 +6,22 @@
     width: 100%;
     height: 400px;
 }
+#topapp {
+    width: 100%;
+    height: 400px;
+}
+#topsd{
+    width: 100%;
+    height: 500px;
+}
+#toprisk{
+    width: 100%;
+    height: 500px;
+}
+#topappcat {
+    width: 100%;
+    height: 400px;
+}
 /* ######  lines loader  ###### */
 .lds-facebook {
     display: inline-block;
