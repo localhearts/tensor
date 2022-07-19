@@ -1,5 +1,4 @@
 $(document).ready(function () {
-  console.log("a");
   $("#btn-close").click(function () {
     $("#lds-facebook").hide();
   });
@@ -28,6 +27,33 @@ $(document).ready(function () {
     console.log(id);
     $("#datatable").DataTable().clear().destroy();
     ModalDirection(gte, lte, id);
+  });
+
+  $("#dstcountrycloud").click(function () {
+    var id = $("#dstcountrycloud .modal-app-risk").data("id");
+    var gte = "2022-07-15";
+    var lte = "2022-07-15";
+    console.log(id);
+    $("#datatable").DataTable().clear().destroy();
+    DstCountry(gte, lte, id);
+  });
+
+  $("#srccountrycloud").click(function () {
+    var id = $("#srccountrycloud .modal-app-risk").data("id");
+    var gte = "2022-07-15";
+    var lte = "2022-07-15";
+    console.log(id);
+    $("#datatable").DataTable().clear().destroy();
+    SrcCountry(gte, lte, id);
+  });
+
+  $("#table-view").click(function () {
+    var id = $("#table-view ").data("id");
+    var gte = "2022-07-15";
+    var lte = "2022-07-15";
+    console.log(id);
+    $("#table-voew").DataTable().clear().destroy();
+    TableView(gte, lte, id);
   });
 
   // $('input[name="datefilter"]').daterangepicker({
@@ -78,6 +104,7 @@ $(document).ready(function () {
   var notifier = getParameterByName("notifier");
   var dt = getParameterByName("dt");
   Search("2022-07-15", "2022-07-15", "*").then();
+  TableView("2022-07-15", "2022-07-15", "*").then();
 
   async function ModalService(gte, lte, id) {
     $("#lds-facebook").show();
@@ -112,6 +139,7 @@ $(document).ready(function () {
                 return data.srccountry ? data.srccountry : "-";
               },
             },
+
             {
               data: "_source",
               render: function (data, type, row, meta) {
@@ -381,6 +409,311 @@ $(document).ready(function () {
         });
       });
   }
+
+  async function DstCountry(gte, lte, id) {
+    $("#lds-facebook").show();
+    var search_data = Array();
+    var params = { gte: gte, lte: lte, keyword: id };
+    $.post("../api/sensor/dst-country/search/", params)
+      .then((response) => {
+        search_data = response.data;
+      })
+      .done(function () {
+        $("#lds-facebook").hide();
+        $("#datatable").DataTable({
+          data: search_data,
+          destroy: true,
+          columns: [
+            {
+              data: "_source.date",
+              render: function (data, type, row, meta) {
+                let get_Date = moment.tz(data, "UTC");
+                return get_Date.local().format("DD/MM/YYYY");
+              },
+            },
+            {
+              data: "_source",
+              render: function (data, type, row, meta) {
+                return data.apprisk ? data.apprisk : "-";
+              },
+            },
+            {
+              data: "_source",
+              render: function (data, type, row, meta) {
+                return data.srccountry ? data.srccountry : "-";
+              },
+            },
+            {
+              data: "_source",
+              render: function (data, type, row, meta) {
+                return data.msg ? data.msg : "-";
+              },
+            },
+            {
+              data: "_source",
+              render: function (data, type, row, meta) {
+                return data.httpmethod ? data.httpmethod : "-";
+              },
+            },
+            {
+              data: "_source",
+              render: function (data, type, row, meta) {
+                return data.path ? data.path : "-";
+              },
+            },
+            {
+              data: "_source",
+              render: function (data, type, row, meta) {
+                return data.hostname ? data.hostname : "-";
+              },
+            },
+            {
+              data: "_source",
+              render: function (data, type, row, meta) {
+                return data.srcip ? data.srcip : "-";
+              },
+            },
+            {
+              data: "_source",
+              render: function (data, type, row, meta) {
+                return data.devname ? data.devname : "-";
+              },
+            },
+            {
+              data: "_source",
+              render: function (data, type, row, meta) {
+                return data.level ? data.level : "-";
+              },
+            },
+            {
+              data: "_source",
+              render: function (data, type, row, meta) {
+                return data.direction ? data.direction : "-";
+              },
+            },
+            {
+              data: "_source",
+              render: function (data, type, row, meta) {
+                return data.service ? data.service : "-";
+              },
+            },
+          ],
+        });
+      })
+      .fail(function () {
+        toastr.error("Request Timeout", "Notification", {
+          positionClass: "toast-top-right",
+          showDuration: "300",
+          hideDuration: "1000",
+          timeOut: "1000",
+          extendedTimeOut: "1000",
+        });
+      });
+  }
+
+  async function SrcCountry(gte, lte, id) {
+    $("#lds-facebook").show();
+    var search_data = Array();
+    var params = { gte: gte, lte: lte, keyword: id };
+    $.post("../api/sensor/src-country/search/", params)
+      .then((response) => {
+        search_data = response.data;
+      })
+      .done(function () {
+        $("#lds-facebook").hide();
+        $("#datatable").DataTable({
+          data: search_data,
+          destroy: true,
+          columns: [
+            {
+              data: "_source.date",
+              render: function (data, type, row, meta) {
+                let get_Date = moment.tz(data, "UTC");
+                return get_Date.local().format("DD/MM/YYYY");
+              },
+            },
+            {
+              data: "_source",
+              render: function (data, type, row, meta) {
+                return data.apprisk ? data.apprisk : "-";
+              },
+            },
+            {
+              data: "_source",
+              render: function (data, type, row, meta) {
+                return data.srccountry ? data.srccountry : "-";
+              },
+            },
+            {
+              data: "_source",
+              render: function (data, type, row, meta) {
+                return data.msg ? data.msg : "-";
+              },
+            },
+            {
+              data: "_source",
+              render: function (data, type, row, meta) {
+                return data.httpmethod ? data.httpmethod : "-";
+              },
+            },
+            {
+              data: "_source",
+              render: function (data, type, row, meta) {
+                return data.path ? data.path : "-";
+              },
+            },
+            {
+              data: "_source",
+              render: function (data, type, row, meta) {
+                return data.hostname ? data.hostname : "-";
+              },
+            },
+            {
+              data: "_source",
+              render: function (data, type, row, meta) {
+                return data.srcip ? data.srcip : "-";
+              },
+            },
+            {
+              data: "_source",
+              render: function (data, type, row, meta) {
+                return data.devname ? data.devname : "-";
+              },
+            },
+            {
+              data: "_source",
+              render: function (data, type, row, meta) {
+                return data.level ? data.level : "-";
+              },
+            },
+            {
+              data: "_source",
+              render: function (data, type, row, meta) {
+                return data.direction ? data.direction : "-";
+              },
+            },
+            {
+              data: "_source",
+              render: function (data, type, row, meta) {
+                return data.service ? data.service : "-";
+              },
+            },
+          ],
+        });
+      })
+      .fail(function () {
+        toastr.error("Request Timeout", "Notification", {
+          positionClass: "toast-top-right",
+          showDuration: "300",
+          hideDuration: "1000",
+          timeOut: "1000",
+          extendedTimeOut: "1000",
+        });
+      });
+  }
+
+  async function TableView(gte, lte, id) {
+    $("#lds-facebook").show();
+    var search_data = Array();
+    var params = { gte: gte, lte: lte, keyword: id };
+    $.post("../api/sensor/table-view/search/", params)
+      .then((response) => {
+        console.log("fresh", response);
+        search_data = response.data;
+      })
+      .done(function () {
+        $("#lds-facebook").hide();
+        $("#table-view").DataTable({
+          data: search_data,
+          destroy: true,
+          columns: [
+            {
+              data: "_source.date",
+              render: function (data, type, row, meta) {
+                let get_Date = moment.tz(data, "UTC");
+                return get_Date.local().format("DD/MM/YYYY");
+              },
+            },
+            {
+              data: "_source",
+              render: function (data, type, row, meta) {
+                return data.apprisk ? data.apprisk : "-";
+              },
+            },
+            {
+              data: "_source",
+              render: function (data, type, row, meta) {
+                return data.srccountry ? data.srccountry : "-";
+              },
+            },
+            {
+              data: "_source",
+              render: function (data, type, row, meta) {
+                return data.msg ? data.msg : "-";
+              },
+            },
+            {
+              data: "_source",
+              render: function (data, type, row, meta) {
+                return data.httpmethod ? data.httpmethod : "-";
+              },
+            },
+            {
+              data: "_source",
+              render: function (data, type, row, meta) {
+                return data.path ? data.path : "-";
+              },
+            },
+            {
+              data: "_source",
+              render: function (data, type, row, meta) {
+                return data.hostname ? data.hostname : "-";
+              },
+            },
+            {
+              data: "_source",
+              render: function (data, type, row, meta) {
+                return data.srcip ? data.srcip : "-";
+              },
+            },
+            {
+              data: "_source",
+              render: function (data, type, row, meta) {
+                return data.devname ? data.devname : "-";
+              },
+            },
+            {
+              data: "_source",
+              render: function (data, type, row, meta) {
+                return data.level ? data.level : "-";
+              },
+            },
+            {
+              data: "_source",
+              render: function (data, type, row, meta) {
+                return data.direction ? data.direction : "-";
+              },
+            },
+            {
+              data: "_source",
+              render: function (data, type, row, meta) {
+                return data.service ? data.service : "-";
+              },
+            },
+          ],
+        });
+      })
+      .fail(function () {
+        toastr.error("Request Timeout", "Notification", {
+          positionClass: "toast-top-right",
+          showDuration: "300",
+          hideDuration: "1000",
+          timeOut: "1000",
+          extendedTimeOut: "1000",
+        });
+      });
+  }
+
   async function Search(parseAwal, parseAkhir, keyword) {
     $("div.count-total").html(
       '<div class="lds-facebook count-total"><div></div><div></div><div></div></div>'
@@ -448,7 +781,8 @@ $(document).ready(function () {
       // Disable tooltips
       pieSeries.tooltip.label.interactionsEnabled = true;
       pieSeries.tooltip.keepTargetHover = true;
-      pieSeries.slices.template.tooltipHTML = '<a class="text-white modal-app-risk" data-bs-toggle="modal" data-bs-target="#datalist" data-id="{category}">{category}</a>';
+      pieSeries.slices.template.tooltipHTML =
+        '<a class="text-white modal-app-risk" data-bs-toggle="modal" data-bs-target="#datalist" data-id="{category}">{category}</a>';
 
       // 3D PIE TOP DIRECTION
 
@@ -478,15 +812,21 @@ $(document).ready(function () {
       // Disable tooltips
       pieSeries.tooltip.label.interactionsEnabled = true;
       pieSeries.tooltip.keepTargetHover = true;
-      pieSeries.slices.template.tooltipHTML = '<a class="text-white modal-app-risk" data-bs-toggle="modal" data-bs-target="#datalist" data-id="{category}">{category}</a>';
-      
-      $('#srccountrycloud').ready(function () {
+      pieSeries.slices.template.tooltipHTML =
+        '<a class="text-white modal-app-risk" data-bs-toggle="modal" data-bs-target="#datalist" data-id="{category}">{category}</a>';
+
+      $("#srccountrycloud").ready(function () {
         var srccountry = aggregation.country_tag_src.buckets;
         am4core.useTheme(am4themes_animated);
-        var chart = am4core.create("srccountrycloud", am4plugins_wordCloud.WordCloud);
+        var chart = am4core.create(
+          "srccountrycloud",
+          am4plugins_wordCloud.WordCloud
+        );
         chart.fontFamily = "Courier New";
-        var series = chart.series.push(new am4plugins_wordCloud.WordCloudSeries());
-  
+        var series = chart.series.push(
+          new am4plugins_wordCloud.WordCloudSeries()
+        );
+
         series.randomness = 0.1;
         series.rotationThreshold = 0.5;
         series.minWordLength = 2;
@@ -494,27 +834,31 @@ $(document).ready(function () {
         series.dataFields.word = "key";
         series.dataFields.value = "doc_count";
         series.heatRules.push({
-            "target": series.labels.template,
-            "property": "fill",
-            "min": am4core.color("#FF5733"),
-            "max": am4core.color("#FFC300"),
-            "dataField": "value"
+          target: series.labels.template,
+          property: "fill",
+          min: am4core.color("#FF5733"),
+          max: am4core.color("#FFC300"),
+          dataField: "value",
         });
-  
+
         series.tooltip.label.interactionsEnabled = true;
         series.tooltip.keepTargetHover = true;
         //series.labels.template.urlTarget = "_blank";
-        series.labels.template.tooltipHTML = '<a class="text-white modal-app-risk" data-bs-toggle="modal" data-bs-target="#datalist" data-id="{word}">{word}</a>';
-  
-  
-    });
-    $('#dstcountrycloud').ready(function () {
+        series.labels.template.tooltipHTML =
+          '<a class="text-white modal-app-risk" data-bs-toggle="modal" data-bs-target="#datalist" data-id="{word}">{word}</a>';
+      });
+      $("#dstcountrycloud").ready(function () {
         var dstcountry = aggregation.country_tag_dst.buckets;
         am4core.useTheme(am4themes_animated);
-        var chart = am4core.create("dstcountrycloud", am4plugins_wordCloud.WordCloud);
+        var chart = am4core.create(
+          "dstcountrycloud",
+          am4plugins_wordCloud.WordCloud
+        );
         chart.fontFamily = "Courier New";
-        var series = chart.series.push(new am4plugins_wordCloud.WordCloudSeries());
-  
+        var series = chart.series.push(
+          new am4plugins_wordCloud.WordCloudSeries()
+        );
+
         series.randomness = 0.1;
         series.rotationThreshold = 0.5;
         series.minWordLength = 2;
@@ -522,23 +866,19 @@ $(document).ready(function () {
         series.dataFields.word = "key";
         series.dataFields.value = "doc_count";
         series.heatRules.push({
-            "target": series.labels.template,
-            "property": "fill",
-            "min": am4core.color("#FF5733"),
-            "max": am4core.color("#FFC300"),
-            "dataField": "value"
+          target: series.labels.template,
+          property: "fill",
+          min: am4core.color("#FF5733"),
+          max: am4core.color("#FFC300"),
+          dataField: "value",
         });
         series.tooltip.label.interactionsEnabled = true;
         series.tooltip.keepTargetHover = true;
         //series.labels.template.urlTarget = "_blank";
-        series.labels.template.tooltipHTML = '<a class="text-white modal-app-risk" data-bs-toggle="modal" data-bs-target="#datalist" data-id="{word}">{word}</a>';
-  
-  
+        series.labels.template.tooltipHTML =
+          '<a class="text-white modal-app-risk" data-bs-toggle="modal" data-bs-target="#datalist" data-id="{word}">{word}</a>';
+      });
     });
-
-    });
-
-   
   }
 
   function getParameterByName(name, url = window.location.href) {
